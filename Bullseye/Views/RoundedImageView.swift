@@ -38,12 +38,20 @@ struct RoundedImageViewFilled: View {
 }
 
 struct RoundedImageViewStrokedRec: View {
+    
+    var text: String
+    
     var body: some View {
-            RoundedRectangle(cornerRadius: 21.0)
-                .strokeBorder(Color("ButtonStrokeColor"), lineWidth: 2.0)
+        Text(text.uppercased())
             .font(.title3)
+            .fontWeight(.bold)
+            .kerning(-0.2)
             .foregroundColor(Color("TextColor"))
             .frame(width: 68.0, height: 56.0)
+            .overlay(
+                RoundedRectangle(cornerRadius: 21.0)
+                    .strokeBorder(Color("ButtonStrokeColor"), lineWidth: 2.0)
+            )
     }
 }
 

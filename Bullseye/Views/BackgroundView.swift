@@ -44,15 +44,9 @@ struct NumberView: View {
     
     var body: some View {
         VStack {
-            LabelTitleText(text: title)
-            ZStack {
-                RoundedImageViewStrokedRec()
-                    .frame(width: 56.0, height: 56.0)
-                LabelRecText(text: text)
+            LabelText(text: title)
+            RoundedImageViewStrokedRec(text: text)
             }
-            
-        }
-        
     }
 }
 
