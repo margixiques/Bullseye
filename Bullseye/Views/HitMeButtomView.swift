@@ -14,9 +14,9 @@ struct HitMeButtomView: View {
     @Binding var game: Game
     
     var body: some View {
-        Button(action: {
+        Button {
             alertIsVisible = true
-        }) {
+        } label: {
             Text("Hit me".uppercased())
                 .bold()
                 .font(.title3)

@@ -10,16 +10,16 @@ import SwiftUI
 struct BackgroundView: View {
     @Binding var game: Game
     
+    
     var body: some View {
         VStack {
             TopView(game: $game)
             Spacer()
             BottomView(game: $game)
         }
-        .padding()
         .background(
-            Color("BackgroundColor")
-                .edgesIgnoringSafeArea(.all)
+            RingView()
+                .padding()
         )
     }
 }
@@ -29,7 +29,11 @@ struct TopView: View {
     
     var body: some View {
         HStack {
-            RoundedImageViewStroked(systemName: "arrow.counterclockwise")
+            Button {
+                game.restart()
+            } label: {
+                RoundedImageViewStroked(systemName: "arrow.counterclockwise")
+            }
             Spacer()
             RoundedImageViewFilled(systemName: "list.dash")
         }
@@ -37,6 +41,7 @@ struct TopView: View {
         .padding(.vertical, 30)
     }
 }
+
 
 struct NumberView: View {
     var title: String
@@ -46,7 +51,7 @@ struct NumberView: View {
         VStack {
             LabelText(text: title)
             RoundedImageViewStrokedRec(text: text)
-            }
+        }
     }
 }
 
@@ -61,6 +66,35 @@ struct BottomView: View {
         }
         .padding(.horizontal, 30)
         .padding(.vertical, 30)
+    }
+}
+
+struct RingView: View {
+    var body: some View {
+        ZStack {
+            Color("BackgroundColor")
+                .edgesIgnoringSafeArea(.all)
+            ForEach(1..<6) { ring in
+                let size = CGFloat(ring * 100)
+                Circle()
+                    .stroke(lineWidth: 20.0)
+                    .fill(
+                        RadialGradient(
+                            colors: [
+                                Color("RingColor")
+                                    .opacity(0.8 * 0.3),
+                                Color ("RingColor")
+                                    .opacity(0)],
+                            center: .center,
+                            startRadius: 100.0,
+                            endRadius: 321.0
+                        ))
+                    .frame(width: size,
+                           height: size)
+                
+            }
+            
+        }
     }
 }
 
