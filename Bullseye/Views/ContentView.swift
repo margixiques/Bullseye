@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var alertIsVisible = false
+    @State private var alertIsVisible = true
     @State private var sliderValue = 50.0
     @State private var game = Game()
     
@@ -17,8 +17,18 @@ struct ContentView: View {
             BackgroundView(game: $game)
             VStack {
                 InstructionsView(game: $game)
+                    .padding(.bottom, alertIsVisible ? 0 : 100)
+                if alertIsVisible {
+                    PointsViews(game: $game, sliderValue: $sliderValue, alertIsVisible: $alertIsVisible)
+                        .transition(.scale)
+                } else {
+                    HitMeButtomView(alertIsVisible: $alertIsVisible, sliderValue: $sliderValue, game: $game)
+                        .transition(.scale)
+                }
+            }
+            if !alertIsVisible{
                 SliderView(sliderValue: $sliderValue)
-                HitMeButtomView(alertIsVisible: $alertIsVisible, sliderValue: $sliderValue, game: $game)
+                    .transition(.scale)
             }
         }
     }

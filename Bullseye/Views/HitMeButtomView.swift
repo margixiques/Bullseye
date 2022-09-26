@@ -15,7 +15,9 @@ struct HitMeButtomView: View {
     
     var body: some View {
         Button {
-            alertIsVisible = true
+            withAnimation {
+                alertIsVisible = true
+            }
         } label: {
             Text("Hit me".uppercased())
                 .bold()
@@ -31,10 +33,10 @@ struct HitMeButtomView: View {
             }
         )
         .foregroundColor(Color.white)
-        .cornerRadius(21.0)
+        .cornerRadius(Constants.General.roundedRectCornerRadius)
         .overlay(
-            RoundedRectangle(cornerRadius: 21.0)
-                .strokeBorder(Color.white, lineWidth: 2.0)
+            RoundedRectangle(cornerRadius: Constants.General.roundedRectCornerRadius)
+                .strokeBorder(Color.white, lineWidth: Constants.General.strokeWidth)
         )
         
     }

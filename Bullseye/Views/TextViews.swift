@@ -59,12 +59,72 @@ struct LabelText: View {
     }
 }
 
+struct BodyText: View {
+    var text: String
+    
+    var body: some View {
+        Text(text)
+            .fontWeight(.semibold)
+            .multilineTextAlignment(.center)
+            .font(.subheadline)
+            .lineSpacing(12.0)
+           
+        
+    }
+}
+
+struct ButtonText: View {
+    var text: String
+    
+    var body: some View {
+        Text(text)
+            .fontWeight(.bold)
+            .font(.body)
+            .foregroundColor(Color.white)
+            .frame(maxWidth: .infinity)
+            .padding()
+            .background(
+                Color.accentColor
+            )
+            .cornerRadius(12.0)
+    }
+}
+
+struct ScoreText: View {
+    var score: Int
+    
+    var body: some View {
+        Text(String(score))
+            .font(.title3)
+            .bold()
+            .kerning(-0.2)
+            .multilineTextAlignment(.center)
+    } 
+}
+
+struct DateText: View {
+    var date: Date
+
+    var body: some View {
+        Text(date, style: .time)
+            .font(.title3)
+            .bold()
+            .kerning(-0.2)
+            .multilineTextAlignment(.center)
+    }
+}
+
+
+
 struct TextViews_Previews: PreviewProvider {
     static var previews: some View {
         VStack{
-        InstructionText(text: "Instruction")
-        BigNumberText(text: "888")
-        SliderLabelText(text: "1")
+        InstructionText(text: "THE SLIDER VALUE IS")
+        BigNumberText(text: "89")
+        //SliderLabelText(text: "1")
+        BodyText(text: "You scored 200 Points\n🎉🎉🎉")
+        ButtonText(text: "Start New Round")
         }
+        .padding()
     }
 }
