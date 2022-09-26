@@ -97,6 +97,7 @@ struct ScoreText: View {
         Text(String(score))
             .font(.title3)
             .bold()
+            .foregroundColor(Color("TextColor"))
             .kerning(-0.2)
             .multilineTextAlignment(.center)
     } 
@@ -109,6 +110,7 @@ struct DateText: View {
         Text(date, style: .time)
             .font(.title3)
             .bold()
+            .foregroundColor(Color("TextColor"))
             .kerning(-0.2)
             .multilineTextAlignment(.center)
     }

@@ -24,11 +24,13 @@ struct RowView: View {
         
         HStack {
         RoundedTextView(text: String(index))
-                .padding(.trailing)
+                Spacer()
         ScoreText(score: score)
-                .frame(maxWidth: Constants.Leaderboard.leaderboardScoreColWidth)
+                .frame(width: Constants.Leaderboard.leaderboardScoreColWidth)
+            Spacer()
         DateText(date: date)
-            .frame(maxWidth: Constants.Leaderboard.leaderboardDateColWidth)        }
+            .frame(width: Constants.Leaderboard.leaderboardDateColWidth)
+        }
         .background(
             RoundedRectangle(cornerRadius: .infinity)
                 .strokeBorder(Color ("LeaderboardRowColor") , lineWidth: Constants.General.strokeWidth)
