@@ -77,6 +77,7 @@ struct Preview: View {
         VStack (spacing: 10) {
             RoundedImageViewStroked(systemName: "arrow.counterclockwise")
             RoundedImageViewFilled(systemName: "list.dash")
+            RoundedImageViewFilled(systemName: "xmark")
             RoundedTextView(text: "1")
         }
     }

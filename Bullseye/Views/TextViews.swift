@@ -116,7 +116,33 @@ struct DateText: View {
     }
 }
 
+struct HeaderTextView: View {
 
+    let text: String
+    
+    var body: some View {
+        Text(text.uppercased())
+            .font(.title)
+            .fontWeight(.black)
+            .foregroundColor(Color("TextColor"))
+            .kerning(2.0)
+            .multilineTextAlignment(.center)
+    }
+}
+
+struct LabelTextView: View {
+
+    let text: String
+    
+    var body: some View {
+        Text(text.uppercased())
+            .font(.caption)
+            .fontWeight(.bold)
+            .foregroundColor(Color("TextColor"))
+            .kerning(1.5)
+            .multilineTextAlignment(.center)
+    }
+}
 
 struct TextViews_Previews: PreviewProvider {
     static var previews: some View {
