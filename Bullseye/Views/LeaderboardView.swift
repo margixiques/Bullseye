@@ -9,34 +9,45 @@ import SwiftUI
 
 struct LeaderboardView: View {
     
+    @Binding var leaderboardIsShowing: Bool
+    
     var body: some View {
         ZStack {
             Color("BackgroundColor")
                 .edgesIgnoringSafeArea(.all)
             VStack (spacing: 10) {
-                HeaderView()
+                HeaderView(leaderboardIsShowing: $leaderboardIsShowing)
                 LabelView()
                 RowView(index: 1, score: 10, date: Date())
             }
         }
-        
-        
     }
 }
 
 struct HeaderView: View {
+    @Binding var leaderboardIsShowing: Bool
+    @Environment(\.verticalSizeClass) var verticalSizeClass
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
+    
+    
     var body: some View {
         ZStack {
-            HeaderTextView(text: "leaderboard")
+            HStack {
+                if verticalSizeClass == .regular && horizontalSizeClass == .compact {
+                    HeaderTextView(text: "leaderboard")
+                        .padding(.leading)
+                    Spacer()
+                } else {
+                    HeaderTextView(text: "leaderboard")
+                }
+            }
             HStack {
                 Spacer()
-                Button(role: .cancel) {
-                    /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Action@*/ /*@END_MENU_TOKEN@*/
+                Button{
+                    leaderboardIsShowing = false
                 } label: {
                     RoundedImageViewFilled(systemName: "xmark")
                 }
-                
-                
             }
         }
         .padding(.leading)
@@ -62,7 +73,6 @@ struct LabelView: View {
         .frame(maxWidth: Constants.Leaderboard.leaderboardMaxRowWidth)
     }
 }
-
 
 struct RowView: View {
     
@@ -91,9 +101,10 @@ struct RowView: View {
     }
 }
 
-
 struct LeaderboardView_Previews: PreviewProvider {
+    static private var leaderboardIsShowing = Binding.constant(false)
+    
     static var previews: some View {
-        LeaderboardView()
+        LeaderboardView(leaderboardIsShowing: leaderboardIsShowing)
     }
 }
